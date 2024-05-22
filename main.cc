@@ -8,25 +8,26 @@ int main()
     char opcao, dificuldade = 'm';
     int tentativas;
         
-    srand(time(NULL));
-    
     do {
-        cout << "Bem-vindo ao mastermind!\nEscolha uma opcao:" << endl;
+        cout << "Bem-vindo ao mastermind!\nMenu:" << endl;
         cout << "Jogar(j)" << endl;
         cout << "Dificuldade(d)" << endl;
         cout << "Sobre(s)" << endl;
         cout << "Fim(f)" << endl;
+        cout << "Escolha uma opcao: ";
         cin >> opcao;
+        cout << "\n";
         
         system("cls");
         
         if (opcao == 'd') {
             do {
-                cout << "Escolha uma dificuldade: " << endl;
                 cout << "Fácil(f)" << endl;
                 cout << "Média(m)" << endl;
                 cout << "Difícil(d)" << endl;
+                cout << "Escolha uma dificuldade: "; 
                 cin >> dificuldade;
+                cout << "\n";
             } while (
                 dificuldade != 'f' &&
                 dificuldade != 'm' &&
@@ -40,11 +41,17 @@ int main()
         
         if (opcao == 'j')
         {
+            system("cls");
             cout << "Você começou o jogo!" << endl;
-    
+        
+            srand(time(NULL));
+            
+            // dificuldade fácil feito;
             if (dificuldade == 'f')
             {
-                int num1, num2, num3;
+                int num1, num2, num3, 
+                    primeiro_digito, segundo_digito, terceiro_digito;
+                    
                 tentativas = 8;
                 
                 do {
@@ -58,63 +65,109 @@ int main()
                 cout << num1 << endl;
                 cout << num2 << endl;
                 cout << num3 << endl;
-            
-                // trabalhando ainda..
-                int primeiroNumeroInserido, segundoNumeroInserido, terceiroNumeroInserido;
-    
-                cout << "Insira o primeiro número: " << endl;
-                cin >> primeiroNumeroInserido;
-    
-                cout << "Insira o segundo número: " << endl;
-                cin >> segundoNumeroInserido;
-    
-                cout << "Insira o terceiro número: " << endl;
-                cin >> terceiroNumeroInserido;
-    
-                if (primeiroNumeroInserido == num1)
-                {
-                    cout << "Você acertou o primeiro número!" << endl;
+                
+                do {
+                    int num_correto = 0,
+                        num_incorreto = 0,
+                        posicao_correta = 0,
+                        posicao_incorreta = 0;
+                    
+                    do {
+                        cout << "Digite três número de 1 a 6!" << endl;
+                        
+                        cout << "Insira o primeiro número: ";
+                        cin >> primeiro_digito;
+                        cout << "Insira o segundo número: ";
+                        cin >> segundo_digito;
+                        cout << "Insira o terceiro número: ";
+                        cin >> terceiro_digito;
+                        
+                        if (primeiro_digito == segundo_digito ||
+                            primeiro_digito == terceiro_digito ||
+                            segundo_digito == terceiro_digito ||
+                            (primeiro_digito < 1 || primeiro_digito > 6) ||
+                            (segundo_digito < 1 || segundo_digito > 6) ||
+                            (terceiro_digito < 1 || terceiro_digito > 6)
+                        ) {
+                          cout << "Não pode digitar números repetidos e abaixo de 1 ou acima de 6! Digite novamente.\n" << endl;  
+                        } 
+                    }
+                    while (
+                        primeiro_digito == segundo_digito ||
+                        primeiro_digito == terceiro_digito ||
+                        segundo_digito == terceiro_digito ||
+                        (primeiro_digito < 1 || primeiro_digito > 6) ||
+                        (segundo_digito < 1 || segundo_digito > 6) ||
+                        (terceiro_digito < 1 || terceiro_digito > 6)
+                    );
+                    
+                    if (primeiro_digito == num1 && 
+                        segundo_digito == num2 && 
+                        terceiro_digito == num3
+                    ) {
+                        cout << "Parabéns! Você acertou toda a sequência de números nas casas correta. Sequência: \n" << num1 << " " << num2 << " " << num3 << endl;
+                        break;
+                    }
+                        
+                    if (primeiro_digito == num1){
+                        num_correto++;
+                        posicao_correta++;
+                    }
+        
+                    if (primeiro_digito == num2 || primeiro_digito == num3)
+                    {
+                        num_correto++;
+                        posicao_incorreta++;
+                    }
+        
+                    if (primeiro_digito != num1 && primeiro_digito != num2 && primeiro_digito != num3)
+                    {
+                        num_incorreto++;
+                    }
+        
+                    if (segundo_digito == num2)
+                    {
+                        num_correto++;
+                        posicao_correta++;
+                    }
+        
+                    if (segundo_digito == num1 || segundo_digito == num3)
+                    {
+                        num_correto++;
+                        posicao_incorreta++;
+                    }
+        
+                    if (segundo_digito != num1 && segundo_digito != num2 && segundo_digito != num3)
+                    {
+                        num_incorreto++;
+                    }
+        
+                    if (terceiro_digito == num3)
+                    {
+                        num_correto++;
+                        posicao_correta++;
+                    }
+        
+                    if (terceiro_digito == num1 || terceiro_digito == num2)
+                    {
+                        num_correto++;
+                        posicao_incorreta++;
+                    }
+        
+                    if (terceiro_digito != num1 && terceiro_digito != num2 && terceiro_digito != num3)
+                    {
+                        num_incorreto++;
+                    }
+                    
+                    cout << "Dígitos corretos: " << num_correto << endl;
+                    cout << "Posições corretas: " << posicao_correta << endl;
+                    cout << "Dígitos incorretos: " << num_incorreto << endl;
+                    
+                    tentativas--;
+                    cout << "\nVocê possui " << tentativas << " tentativas restantes!\n" << endl;
+                    if (tentativas == 0) cout << "Infelizmente suas chances acabaram! Tente novamente.\n" << endl;
                 }
-    
-                if (primeiroNumeroInserido == num2 || primeiroNumeroInserido == num3)
-                {
-                    cout << "O primeiro número existe, mas não está na posição em que foi inserido." << endl;
-                }
-    
-                if (primeiroNumeroInserido != num1 && primeiroNumeroInserido != num2 && primeiroNumeroInserido != num3)
-                {
-                    cout << "Este número não existe!" << endl;
-                }
-    
-                if (segundoNumeroInserido == num2)
-                {
-                    cout << "Você acertou o segundo número!" << endl;
-                }
-    
-                if (segundoNumeroInserido == num1 || segundoNumeroInserido == num3)
-                {
-                    cout << "O segundo número existe, mas não está na posição em que foi inserido." << endl;
-                }
-    
-                if (segundoNumeroInserido != num1 && segundoNumeroInserido != num2 && segundoNumeroInserido != num3)
-                {
-                    cout << "Este número não existe!" << endl;
-                }
-    
-                if (terceiroNumeroInserido == num3)
-                {
-                    cout << "Você acertou o terceiro número!" << endl;
-                }
-    
-                if (terceiroNumeroInserido == num1 || terceiroNumeroInserido == num2)
-                {
-                    cout << "O terceiro número existe, mas não está na posição em que foi inserido." << endl;
-                }
-    
-                if (terceiroNumeroInserido != num1 && terceiroNumeroInserido != num2 && terceiroNumeroInserido != num3)
-                {
-                    cout << "Este número não existe!" << endl;
-                }
+                while (tentativas != 0);
             }
     
             if (dificuldade == 'm')
