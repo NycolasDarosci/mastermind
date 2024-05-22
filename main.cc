@@ -105,7 +105,7 @@ int main()
                         segundo_digito == num2 && 
                         terceiro_digito == num3
                     ) {
-                        cout << "Parabéns! Você acertou toda a sequência de números nas casas correta. Sequência: \n" << num1 << " " << num2 << " " << num3 << endl;
+                        cout << "Parabéns! Você acertou toda a sequência de números nas casas corretas. Sequência: \n" << num1 << " " << num2 << " " << num3 << endl;
                         break;
                     }
                         
@@ -235,7 +235,7 @@ int main()
                         terceiro_digito == num3 &&
                         quarto_digito == num4
                     ) {
-                        cout << "Parabéns! Você acertou toda a sequência de números nas casas correta. Sequência: \n" << num1 << " " << num2 << " " << num3 << " " <<  num4 << endl;
+                        cout << "Parabéns! Você acertou toda a sequência de números nas casas corretas. Sequência: \n" << num1 << " " << num2 << " " << num3 << " " <<  num4 << endl;
                         break;
                     }
                     
@@ -399,7 +399,7 @@ int main()
                         quarto_digito == num4 && 
                         quinto_digito == num5
                     ) {
-                        cout << "Parabéns! Você acertou toda a sequência de números nas casas correta. Sequência: \n" << num1 << " " << num2 << " " << num3 << " " <<  num4 << " " << num5 << endl;
+                        cout << "Parabéns! Você acertou toda a sequência de números nas casas corretas. Sequência: \n" << num1 << " " << num2 << " " << num3 << " " <<  num4 << " " << num5 << endl;
                         break;
                     }
                     
